@@ -1,11 +1,11 @@
-class Node:
-    def __init__(self,value) -> None:
+class ListNode:
+    def __init__(self,value,link=None) -> None:
         self.value = value
-        self.next = None
+        self.link = link
         
 class LinkedlList:
     def __init__(self) -> None:
-        self.head = None
+        self._head = None
         self.N = 0
         
     def add(self,value):
@@ -16,14 +16,14 @@ class LinkedlList:
            Add a new node to the begining with this value
         
         """
-        new_node = Node(value)
-        head_before = self.head
-        self.head = new_node
+        new_node = ListNode(value)
+        head_before = self._head
+        self._head = new_node
         new_node.next = head_before
         self.N += 1
     def add_last(self,value):
-        new_node = Node(value)
-        node = self.head
+        new_node = ListNode(value)
+        node = self._head
         while node.next:
             node = node.next
         node.next = new_node
@@ -34,16 +34,16 @@ class LinkedlList:
         do nothing and return None if it is alredy empty 
         """
         ret = None
-        if self.head:
-            ret = self.head.value
-            head = self.head.next 
+        if self._head:
+            ret = self._head.value
+            head = self._head.next 
             self.N -= 1
         return ret
             
             
     def __str__(self) -> str:
         s = "LinkedList"
-        node = self.head
+        node = self._head
         while node:
             s += "{} ==> ".format(node.value)
             node = node.next
